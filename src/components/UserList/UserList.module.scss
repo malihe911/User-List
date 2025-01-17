@@ -27,7 +27,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    gap: 300px; // فاصله افقی بین بخش‌های داخلی کارت
+    gap: 300px;
 
     .profileImage {
       width: 50px;
@@ -38,7 +38,7 @@
     .userInfo {
       display: flex;
       flex-direction: row;
-      gap: 10px; // فاصله عمودی بین اطلاعات کاربر
+      gap: 10px;
     }
 
     .name {
@@ -71,6 +71,35 @@
       height: 15px;
       margin-left: 10px;
       border-radius: 2px;
+    }
+  }
+
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .userCard {
+      flex-direction: column; /* Change layout to column */
+      align-items: flex-start;
+      gap: 15px; /* Adjust gap for smaller screens */
+
+      .profile {
+        flex-direction: row;
+        gap: 15px;
+      }
+
+      .userInfo {
+        flex-direction: column; /* Stack user info vertically */
+        gap: 5px;
+      }
+
+      .countryInfo {
+        flex-direction: row; /* Display country info in a row */
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .countryFlag {
+        margin-left: 0; /* Align flag properly in mobile view */
+      }
     }
   }
 }
