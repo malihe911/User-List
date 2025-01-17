@@ -1,38 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { fetchUsers, User } from "../../services/apiService/apiService";
 import styles from "./UserList.module.scss";
-import Pagination from "../Pagination/Pagination";
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const itemsPerPage = 10;
 
   useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const fetchedUsers = await fetchUsers(50);
-        setUsers(fetchedUsers);
-      } catch (error) {
-        console.error("Error loading users:", error);
-      }
-    };
-
-    loadUsers();
+    // Load initial data
+    loadMoreUsers();
   }, []);
 
-  const handlePageChange = (selectedPage: number) => {
-    setCurrentPage(selectedPage);
-  };
+  const loadMoreUsers = async () => {
+    if (loading || !hasMore) return;
 
-  const offset = currentPage * itemsPerPage;
-  const currentUsers = users.slice(offset, offset + itemsPerPage);
+    setLoading(true);
+    try {
+      const fetchedUsers = await fetchUsers(
+        itemsPerPage,
+        currentPage * itemsPerPage
+      ); // Adjust API to support pagination
+      if (fetchedUsers.length > 0) {
+        setUsers((prevUsers) => [...prevUsers, ...fetchedUsers]);
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else {
+        setHasMore(false); // No more data to load
+      }
+    } catch (error) {
+      console.error("Error loading users:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.userList}>
       <h2 className={styles.title}>User List</h2>
       <div className={styles.list}>
-        {currentUsers.map(
+        {users.map(
           ({
             id,
             firstName,
@@ -78,11 +86,17 @@ const UserList: React.FC = () => {
           )
         )}
       </div>
-      <Pagination
-        totalItems={users.length}
-        itemsPerPage={itemsPerPage}
-        onPageChange={handlePageChange}
-      />
+      {hasMore ? (
+        <button
+          className={styles.loadMoreButton}
+          onClick={loadMoreUsers}
+          disabled={loading}
+        >
+          {loading ? "Loading..." : "Load More"}
+        </button>
+      ) : (
+        <p className={styles.noMoreData}>No more users to load</p>
+      )}
     </div>
   );
 };

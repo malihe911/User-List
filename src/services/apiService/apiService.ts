@@ -14,9 +14,12 @@ export interface User {
   profilePicture: string;
 }
 
-export const fetchUsers = async (results: number = 10): Promise<User[]> => {
+export const fetchUsers = async (
+  results: number = 10,
+  offset: number = 0
+): Promise<User[]> => {
   try {
-    const response = await http.get(`/?results=${results}`);
+    const response = await http.get(`/?results=${results}&offset=${offset}`);
     console.log(response);
 
     const users = response.data.results.map((user: any) => ({
