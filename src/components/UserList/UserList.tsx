@@ -66,7 +66,6 @@ const UserList: React.FC = () => {
               ref={isLastElement ? lastUserElementRef : null}
               className={styles.userCard}
             >
-              {/* ساختار کارت کاربر */}
               <div className={styles.profile}>
                 <img
                   src={user.profilePicture}
@@ -82,6 +81,15 @@ const UserList: React.FC = () => {
                 <p className={styles.gender}>Gender: {user.gender}</p>
                 <p className={styles.phone}>Phone: {user.phone}</p>
                 <p className={styles.email}>Email: {user.email}</p>
+              </div>
+              <div className={styles.countryInfo}>
+                <p className={styles.country}>Country: {user.country}</p>
+                <img
+                  src={user.countryFlag}
+                  alt={`${user.country} flag`}
+                  className={styles.countryFlag}
+                />
+                <p className={styles.address}>Address: {user.address}</p>
               </div>
             </div>
           );
