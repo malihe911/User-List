@@ -82,6 +82,7 @@ const UserList: React.FC = () => {
                 <p className={styles.phone}>Phone: {user.phone}</p>
                 <p className={styles.email}>Email: {user.email}</p>
               </div>
+
               <div className={styles.countryInfo}>
                 <p className={styles.country}>Country: {user.country}</p>
                 <img

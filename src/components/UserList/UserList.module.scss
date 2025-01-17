@@ -1,105 +1,55 @@
-.userList {
-  padding: 20px;
-  background-color: #f4f4f4;
+.userCard {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  padding-bottom: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  flex-direction: row; 
+  align-items: flex-start; 
+  gap: 70px; 
 
-  .title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+  .profileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
-  .profile {
+
+  .userInfo {
     display: flex;
-    gap: 30px;
+    flex-direction: column; 
+    gap: 10px; 
   }
-  .list {
+
+  .countryInfo {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px; 
   }
 
-  .userCard {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    gap: 300px;
-
-    .profileImage {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-
-    .userInfo {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-    }
-
-    .name {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .username {
-      font-size: 14px;
-      color: #555;
-    }
-
-    .gender,
-    .phone,
-    .email,
-    .address {
-      font-size: 12px;
-      color: #777;
-    }
-
-    .countryInfo {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .countryFlag {
-      width: 20px;
-      height: 15px;
-      margin-left: 10px;
-      border-radius: 2px;
-    }
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
   }
 
-  /* Responsive Design for Mobile */
-  @media (max-width: 768px) {
-    .userCard {
-      flex-direction: column; /* Change layout to column */
-      align-items: flex-start;
-      gap: 15px; /* Adjust gap for smaller screens */
+  .username {
+    font-size: 14px;
+    color: #555;
+  }
 
-      .profile {
-        flex-direction: row;
-        gap: 15px;
-      }
+  .gender,
+  .phone,
+  .email {
+    font-size: 12px;
+    color: #777;
+  }
 
-      .userInfo {
-        flex-direction: column; /* Stack user info vertically */
-        gap: 5px;
-      }
-
-      .countryInfo {
-        flex-direction: row; /* Display country info in a row */
-        flex-wrap: wrap;
-        gap: 5px;
-      }
-
-      .countryFlag {
-        margin-left: 0; /* Align flag properly in mobile view */
-      }
-    }
+  .countryFlag {
+    width: 20px;
+    height: 15px;
+    margin-left: 10px;
+    border-radius: 2px;
   }
 }
