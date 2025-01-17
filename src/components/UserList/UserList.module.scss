@@ -14,7 +14,7 @@
   .list {
     display: flex;
     flex-direction: column;
-    gap: 20px; // فاصله بین کارت‌ها
+    gap: 20px;
   }
 
   .userCard {
@@ -27,7 +27,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    gap: 300px; // فاصله افقی بین بخش‌های داخلی کارت (افزایش فاصله)
+    gap: 300px; // فاصله افقی بین بخش‌های داخلی کارت
 
     .profileImage {
       width: 50px;

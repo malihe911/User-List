@@ -1,54 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchUsers, User } from "../../services/apiService/apiService";
 import styles from "./UserList.module.scss";
 import Pagination from "../Pagination/Pagination";
 
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  username: string;
-  gender: string;
-  phone: string;
-  email: string;
-  address: string;
-  country: string;
-  countryFlag: string;
-  profilePicture: string;
-}
-
 const UserList: React.FC = () => {
-  const users: User[] = [
-    {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      username: "johndoe",
-      gender: "Male",
-      phone: "123-456-7890",
-      email: "john@example.com",
-      address: "123 Main St, Anytown, USA",
-      country: "USA",
-      countryFlag: "https://flagcdn.com/us.svg",
-      profilePicture: "https://via.placeholder.com/50",
-    },
-    {
-      id: 2,
-      firstName: "Jane",
-      lastName: "Doe",
-      username: "janedoe",
-      gender: "Female",
-      phone: "098-765-4321",
-      email: "jane@example.com",
-      address: "456 Oak St, Anytown, Canada",
-      country: "Canada",
-      countryFlag: "https://flagcdn.com/ca.svg",
-      profilePicture: "https://via.placeholder.com/50",
-    },
-    // Add more users as needed
-  ];
-
-  const itemsPerPage = 10; // تعداد آیتم‌ها در هر صفحه
+  const [users, setUsers] = useState<User[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        const fetchedUsers = await fetchUsers(50);
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error("Error loading users:", error);
+      }
+    };
+
+    loadUsers();
+  }, []);
 
   const handlePageChange = (selectedPage: number) => {
     setCurrentPage(selectedPage);

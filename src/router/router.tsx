@@ -5,15 +5,15 @@ import UserPage from "../screens/UserListPage";
 
 const router = createBrowserRouter([
   {
-    path: "/", // مسیر والد
-    element: <Layout />, // لایه اصلی
+    path: "/",
+    element: <Layout />,
     children: [
       {
-        path: "/", // صفحه اصلی داشبورد
+        path: "/",
         element: <LandingPage />,
       },
       {
-        path: "/user", // صفحه اصلی داشبورد
+        path: "/user",
         element: <UserPage />,
       },
     ],

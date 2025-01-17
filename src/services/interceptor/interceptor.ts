@@ -1,19 +1,18 @@
+// interceptor/interceptor.ts
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { getItem, removeItem } from "../common/storage";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const instance = axios.create({
-  baseURL: baseURL,
+  baseURL,
 });
 
 interface ResponseData {
   data: any;
 }
 
-const onSuccess = (
-  response: AxiosResponse<ResponseData>
-): AxiosResponse<ResponseData> => {
+const onSuccess = (response: AxiosResponse<ResponseData>) => {
   return response;
 };
 
